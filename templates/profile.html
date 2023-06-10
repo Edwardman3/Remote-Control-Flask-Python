@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+
+.text_table_1 {
+  font-size: 25px;
+  align: middle;
+}
+
+.text_table_2 {
+  font-size: 14px;
+  align: middle;
+}
+.mode1 {
+  background-color: #4CAF50; /* Green */
+  padding: 15px 15px;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.mode2 {
+  background-color: #db4d4d; /* Red */
+  padding: 15px 15px;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.button1 {
+  background-color: #555555;
+  border-radius: 10%;
+  border: None;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 7px 7px;
+  cursor: pointer;
+  align: middle;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 5px solid #ddd;
+  padding: 20px;
+  text-align: center;
+}
+
+#customers tr:nth-child(even){background-color: #05faa0;}
+#customers tr:nth-child(odd){background-color: #05e190;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+#customers tr {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+test {border-radius: 50%;}
+</style>
+<div>
+  <table id="customers">
+  <tr>
+    <th class="text_table_1">Device</th>
+    <th class="text_table_1">Location</th>
+    <th class="text_table_1">Mode</th>
+    {% if current_user.is_authenticated %}
+    <th class="text_table_1">Action</th>
+    {% endif%}
+  </tr>
+    {% for item in item_list %}
+    <tr>
+      <td class="text_table_1">{{item.name}}</td>
+      <td class="text_table_1">{{item.location}}</td>
+      {% if item.is_power_on == 1 %}
+      <td class="text_table_1"> <button class="mode1" disabled> ON </button> </td>
+      {% else %}
+      <td> <button class="mode2" disabled> OFF </button> </td>
+      {% endif %}
+      {% if current_user.is_authenticated %}
+      <td>
+      <a href="/panel_mode/{{item.id}}">  <button class="button1"> Press to go </button> </a>
+      </td>
+      {% endif%}
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

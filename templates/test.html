@@ -1,0 +1,43 @@
+<div id="load" class="load">
+    <div id="header">
+    {{name}}
+    </div>
+    <div id="nav">
+
+        {%if value != 200 %}
+        <a href="/change_value/{{id}}/200"><button class="button1"  > SPEED 1</button></a>
+        {% endif %}
+
+        {%if value != 220 %}
+        <a href="/change_value/{{id}}/220"><button class="button1"  > SPEED 2</button></a>
+        {% endif %}
+
+        {%if value != 230 %}
+        <a href="/change_value/{{id}}/230"><button class="button1"  > SPEED 3</button></a>
+        {% endif %}
+
+        {%if value != 240 %}
+        <a href="/change_value/{{id}}/240"><button class="button1"  > SPEED 4</button></a>
+        {% endif %}
+
+        {%if value != 255 %}
+        <a href="/change_value/{{id}}/255"><button class="button1"  > SPEED 5</button></a>
+        {% endif %}
+    </div>
+
+    <div id="section">
+
+        <img height="571" width="500" src="https://www.coolstore.pl/pol_pl_Wentylator-osiowy-ssacy-Olvent-630mm-400V-4250_1.png">
+        SPEED: {{value}}
+        {% if is_power_on == 1 %}
+        <td class="text_table_1"> <button class="mode1" disabled> ON </button> </td>
+        {% else %}
+        <td> <button class="mode2" disabled> OFF </button> </td>
+        {% endif %}
+
+    </div>
+
+    <div id="footer" >
+        <a href="/change_mode/{{id}}"><button class="button1" >ON/OFF</button></a>
+    </div>
+</div>

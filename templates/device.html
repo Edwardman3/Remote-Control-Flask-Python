@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PWR Remote Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    {{ turbo() }}
+</head>
+
+<style>
+#header {
+    font-size: 30px;
+    background-color:#525151;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+#nav {
+    line-height:100px;
+
+    height:500px;
+    width:150px;
+    float:left;
+    padding:5px;
+}
+#section {
+    width:150px;
+    float:left;
+    padding:10px;
+}
+#footer {
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+
+.mode1 {
+  background-color: #4CAF50; /* Green */
+  padding: 15px 15px;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.mode2 {
+  background-color: #db4d4d; /* Red */
+  padding: 15px 15px;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.button1 {
+  background-color: #555555;
+  border-radius: 10%;
+  border: None;
+  color: white;
+  padding: 16px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 7px 7px;
+  cursor: pointer;
+  align: middle;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 5px solid #ddd;
+  padding: 20px;
+  text-align: center;
+}
+
+#customers tr:nth-child(even){background-color: #05faa0;}
+#customers tr:nth-child(odd){background-color: #05e190;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+#customers tr {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+test {border-radius: 50%;}
+</style>
+
+<body>
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a href="{{ url_for('index') }}" class="navbar-item">
+                                Home
+                            </a>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('profile') }}" class="navbar-item">
+                                Profile
+                            </a>
+                            {% endif %}
+                            {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('login') }}" class="navbar-item">
+                                Login
+                            </a>
+                            <a href="{{ url_for('signup') }}" class="navbar-item">
+                                Sign Up
+                            </a>
+                            {% endif %}
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('logout') }}" class="navbar-item">
+                                Logout
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                {% include "test.html" %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
